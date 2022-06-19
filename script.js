@@ -2,6 +2,7 @@ let deckId
 const cardsContainer = document.getElementById("cards")
 const newDeckBtn = document.getElementById("new-deck")
 const drawCardBtn = document.getElementById("draw-cards")
+const header = document.getElementById("header")
 
 const cardValues = {
     JACK: 11,
@@ -23,10 +24,10 @@ function drawCards() {
         .then(res => res.json())
         .then(data => {
             console.log(data)
-            winningCard(data.cards[0], data.cards[1])
             const imageHtml = data.cards.map(card => `<div class="card-slot"><img class="card" src=${card.image} alt=${card.code} /></div>`)
             cardsContainer.innerHTML = imageHtml
-
+            const winnerText = winningCard(data.cards[0], data.cards[1])
+            header.textContent = winnerText
         })
 }
 
@@ -41,11 +42,11 @@ function winningCard(card1, card2) {
     console.log("Card 2", card2Value)
 
     if(card1Value > card2Value) {
-        console.log("Card 1 wins!")
+        return "Card 1 wins!"
     } else if(card2Value > card1Value) {
-        console.log("Card 2 wins!")
+        return "Card 2 wins!"
     } else {
-        console.log("TIEEEE!")
+        return "TIEEEE!"
     }
 }
 
