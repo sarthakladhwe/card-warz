@@ -12,7 +12,11 @@ function handleClick() {
 function drawCards() {
     fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=2`)
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => {
+            console.log(data)
+            const imageHtml = data.cards.map(card => `<img src=${card.image} alt=${card.code} />`)
+            document.body.innerHTML = imageHtml
+        })
 }
 
 document.getElementById("new-deck").addEventListener("click", handleClick)
