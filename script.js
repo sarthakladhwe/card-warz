@@ -15,7 +15,7 @@ function drawCards() {
         .then(data => {
             console.log(data)
             const imageHtml = data.cards.map(card => `<img src=${card.image} alt=${card.code} />`)
-            document.body.innerHTML = imageHtml
+            document.getElementById('cards').innerHTML = imageHtml
         })
 }
 
