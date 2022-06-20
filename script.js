@@ -37,6 +37,8 @@ function drawCards() {
             remainingCards.textContent = "Remaining Cards: " + data.remaining
             if(data.remaining === 0) {
                 drawCardBtn.disabled = true
+                header.textContent = computerScore > myScore ? "Computer Won the Game." :
+                computerScore < myScore ? "You Won the Game!" : "It is a TIE!"
             }
         })
 }
