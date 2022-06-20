@@ -4,13 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
     <title>Card Warz</title>
 </head>
 <body>
-    <button class="new-deck" id="new-deck">New Deck, Please!</button>
+    <div class="top">
+        <button class="new-deck" id="new-deck">New Deck, Please!</button>
+        <p id="remaining-cards"></p>
+    </div>
     <h2 id="header">Game of War</h2>
     <div id="cards">
+        <div class="card-slot"></div>
+        <div class="card-slot"></div>
     </div>
     <button class="draw" id="draw-cards">Draw Two Cards</button>
     <script src="./script.js"></script>

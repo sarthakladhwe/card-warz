@@ -3,6 +3,7 @@ const cardsContainer = document.getElementById("cards")
 const newDeckBtn = document.getElementById("new-deck")
 const drawCardBtn = document.getElementById("draw-cards")
 const header = document.getElementById("header")
+const remainingCards = document.getElementById("remaining-cards")
 
 const cardValues = {
     JACK: 11,
@@ -24,10 +25,15 @@ function drawCards() {
         .then(res => res.json())
         .then(data => {
             console.log(data)
-            const imageHtml = data.cards.map(card => `<div class="card-slot"><img class="card" src=${card.image} alt=${card.code} /></div>`)
-            cardsContainer.innerHTML = imageHtml
+            const imageHtml = data.cards.map(card => `<img class="card" src=${card.image} alt=${card.code} />`)
+            cardsContainer.children[0].innerHTML = imageHtml[0]
+            cardsContainer.children[1].innerHTML = imageHtml[1]
             const winnerText = winningCard(data.cards[0], data.cards[1])
             header.textContent = winnerText
+            remainingCards.textContent = "Remaining Cards: " + data.remaining
+            if(data.remaining === 0) {
+                drawCardBtn.disabled = true
+            }
         })
 }
 
