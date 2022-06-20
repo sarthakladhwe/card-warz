@@ -1,9 +1,13 @@
 let deckId
+let computerScore = 0
+let myScore = 0
 const cardsContainer = document.getElementById("cards")
 const newDeckBtn = document.getElementById("new-deck")
 const drawCardBtn = document.getElementById("draw-cards")
 const header = document.getElementById("header")
 const remainingCards = document.getElementById("remaining-cards")
+const computerScoreEl = document.getElementById("computer-score")
+const myScoreEl = document.getElementById("my-score")
 
 const cardValues = {
     JACK: 11,
@@ -44,13 +48,14 @@ function winningCard(card1, card2) {
     const card1Value = cardValues.hasOwnProperty(card1.value) ? cardValues[card1.value] : parseInt(card1.value)
     const card2Value = cardValues.hasOwnProperty(card2.value) ? cardValues[card2.value] : parseInt(card2.value)
 
-    console.log("Card 1", card1Value)
-    console.log("Card 2", card2Value)
-
     if(card1Value > card2Value) {
-        return "Card 1 wins!"
+        computerScore++
+        computerScoreEl.textContent = `Computer score: ${computerScore}`
+        return "Computer wins!"
     } else if(card2Value > card1Value) {
-        return "Card 2 wins!"
+        myScore++
+        myScoreEl.textContent = `My score: ${myScore}`
+        return "You win!"
     } else {
         return "TIEEEE!"
     }
@@ -59,29 +64,3 @@ function winningCard(card1, card2) {
 newDeckBtn.addEventListener("click", handleClick)
 
 drawCardBtn.addEventListener("click", drawCards)
-
-
-/**
- * Challenge:
- * 
- * Try to determine which of the 2 cards is the "winner" (has higher value)
- * Aces are the card with the highest "score"
- * 
- * In parts:
- * 
- * 1. Create a function that takes 2 card objects as parameters, 
- * `card1` and `card2`. These card objects have a property called
- * `value`, which can be any one of the following strings, in
- * order of rising "score":
- * 
- * "2", "3", "4", "5", "6", "7", "8", "9", 
- * "10", "JACK", "QUEEN", "KING", "ACE"
- * 
- * I.e. "2" is the lowest score and "ACE" is the highest.
- * 
- * The function should determine which of the 2 cards (`card1`
- * or `card2`) has the higher score, or if they have the same score.
- * 
- * Log which card wins (or "It's a tie!" 
- * if they're the same) to the console
- */
